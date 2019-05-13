@@ -4,6 +4,7 @@ from django.db import models
 
 
 class Purchase(models.Model):
+    """Represents a purchase for a user and their subscription(s)"""
     STATUS = Choices(
         ('pending', 'Pending'),
         ('overdue', 'Past Due'),

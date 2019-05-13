@@ -6,14 +6,14 @@ from wingtel.plans.models import Plan
 
 
 class ATTSubscription(models.Model):
+    """Represents a subscription with AT&T for a user and a single device"""
     STATUS = Choices(
         ('new', 'New'),
         ('active', 'Active'),
         ('expired', 'Expired'),
     )
 
-    # Owning user
-    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    user = models.ForeignKey(User, on_delete=models.PROTECT) # Owning user
 
     plan = models.ForeignKey(Plan, null=True, on_delete=models.PROTECT)
     status = models.CharField(max_length=10, choices=STATUS, default=STATUS.new)

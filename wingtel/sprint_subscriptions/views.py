@@ -4,7 +4,7 @@ from rest_framework import viewsets
 from wingtel.sprint_subscriptions.serializers import SprintSubscriptionSerializer
 
 
-class SprintSubscriptionViewSet(viewsets.GenericViewSet):
+class SprintSubscriptionViewSet(viewsets.ModelViewSet):
     """
     A viewset that provides `retrieve`, `create`, and `list` actions.
     """

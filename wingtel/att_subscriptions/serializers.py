@@ -6,4 +6,4 @@ class ATTSubscriptionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ATTSubscription
-        fields = '__all__'
+        fields = "__all__"

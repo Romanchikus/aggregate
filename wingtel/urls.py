@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.urls import path
+
 from rest_framework import routers
 
 from wingtel.att_subscriptions.views import ATTSubscriptionViewSet
@@ -25,10 +26,10 @@ from wingtel.sprint_subscriptions.views import SprintSubscriptionViewSet
 
 router = routers.DefaultRouter()
 
-router.register(r'att_subscriptions', ATTSubscriptionViewSet, base_name='att_subscriptions')
-router.register(r'plans', PlanViewSet, base_name='plans')
-router.register(r'purchases', PurchaseViewSet, base_name='purchase')
-router.register(r'sprint_subscriptions', SprintSubscriptionViewSet, base_name='sprint_subscriptions')
+router.register(r'att_subscriptions', ATTSubscriptionViewSet)
+router.register(r'plans', PlanViewSet)
+router.register(r'purchases', PurchaseViewSet)
+router.register(r'sprint_subscriptions', SprintSubscriptionViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -7,6 +7,7 @@ from wingtel.plans.models import Plan
 
 
 class SprintSubscription(models.Model):
+    """Represents a subscription with Sprint for a user and a single device"""
     STATUS = Choices(
         ('new', 'New'),
         ('active', 'Active'),
