@@ -43,7 +43,7 @@ We will have retention policy(you don't have to implement) to wipe all data olde
 so tables won't grow infinitely.
 
 
-###Also we need to create purchase once users reaches some day limit
+### Also we need to create purchase once users reaches some day limit
 
 You will need to create API to receive this limit
 Find subscriptions what reached limit of price on data and/or voice(not sum)
@@ -67,7 +67,7 @@ Our agent will manually create purchases with limit price for these subs
     }
 ]
 ```
-###As agent can make a mistake, we want to validate it.
+### As agent can make a mistake, we want to validate it.
 If user asks us why he paid so much for his subscription,
 we need to validate price and kilobytes/seconds data sometimes.
 
@@ -85,7 +85,7 @@ write an an API for it. True or False should be returned(valid/invalid)
 ```
 Optimize this query as much as possible
 
-###also 
+### also 
 we want to fetch data usage metrics  and voice usage metrics separately 
 by subscription, write an API for it
 list of dict should be returned :
