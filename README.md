@@ -46,11 +46,17 @@ so tables won't grow infinitely.
 ### Also we need to create purchase once users reaches some day limit
 
 You will need to create API to receive this limit
+
 Find subscriptions what reached limit of price on data and/or voice(not sum)
+
 Subtract this amount from price in usage table
+
 Optimize this query as much as possible, it's going to run quite often
+
 Send back subscription ids and type of usage what exceeded a limit
+
 Our agent will manually create purchases with limit price for these subs
+
 ```
 [
     {
@@ -69,10 +75,12 @@ Our agent will manually create purchases with limit price for these subs
 ```
 ### As agent can make a mistake, we want to validate it.
 If user asks us why he paid so much for his subscription,
+
 we need to validate price and kilobytes/seconds data sometimes.
 
-to check is everything is correct by subscription id
-write an an API for it. True or False should be returned(valid/invalid)
+write an API to check is everything is correct by subscription id
+
+True or False should be returned(valid/invalid)
 ```
 {
    "result": "valid"
@@ -87,8 +95,11 @@ Optimize this query as much as possible
 
 ### also 
 we want to fetch data usage metrics  and voice usage metrics separately 
+
 by subscription, write an API for it
+
 list of dict should be returned :
+
 ```
 [{
 'date':
@@ -96,5 +107,3 @@ list of dict should be returned :
 'seconds_used' or 'kilobytes_used' 
 }]
 ```
-
-++++++++
