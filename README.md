@@ -26,9 +26,13 @@ kilobytes used - how much traffic used since last update, integer value
 
 Voice usage fields:
 subscription id - ATTSubscription or SprintSubscription
-price - numeric value,  additional cost since last update
+price - numeric value, additional cost since last update
 date - data will be per day based. so will just update data if usage for current day already exists.
 seconds used - how much seconds talked since last update, integer value
+
+
+We will have retention policy(you don't have to implement) to wipe all data older two weeks, 
+so tables won't grow infinitely.
 
 
 ###Also we need to create purchase once users reaches some day limit
@@ -56,13 +60,8 @@ Our agent will manually create purchases with limit price for these subs
 ]
 ```
 ###As agent can make a mistake, we want to validate it.
-If user ask us why he paid so much for his subscription,
+If user asks us why he paid so much for his subscription,
 we need to validate price and kilobytes/seconds data sometimes.
-
-tip:
-
-when you subtract, you change only price column, we don't change other values for validation.
-so you will want to check current current price and used bytes alongside with created purchases
 
 to check is everything is correct by subscription id
 write an an API for it. True or False should be returned(valid/invalid)
