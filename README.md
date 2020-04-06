@@ -2,23 +2,92 @@
 
 ## Requirements
 * Python 3.5+
-* SQLite
+* Postgresql
 
 ## Challenge
-Create an endpoint that will allow a user to activate their own AT&T and/or Sprint subscription. This should include the following:
+Make a structure to collect user usage metrics, and to fetch small reports based on it.
 
-- Checks for proper user permissions
-- Applies to any existing subscription with a status of `new`
-- Checks required subscription data is present before activation, including `plan`, `phone_number`, `device_id`
-- Changes the subscription status from `new` to `active`
-- Creates a purchase with a status of `overdue` related to the subscription and the subscription's plan
+We will have two types of usage - data usage and voice usage, 
+i.e. how much user uses internet traffic and how much he talked on a phone. 
 
-*Note: The activation endpoint can be added to AT&T subscriptions, Sprint subscriptions, or both.*
+Imagine that data for these metrics will be filled directly into database from a couple of
+external sources(with raw sql), you just need to create structure.
+Sources will make incrementing queries based on values already existing in db.
 
-## Bonuses
-- Create a way to link a purchase directly to a subscription, not just a user
-- Improve and/or optimize the code
+Expected data incoming rate - ~1000 updates per minute
 
-## Superuser Login
-username: `admin`
-password: `admin`
+Fields what can be sent from data usage services:
+
+Data usage incoming data fields:
+subscription id - ATTSubscription or SprintSubscription
+price - numeric value, additional cost since last update
+date - data will be per day based. so will just update data if usage for current day already exists.
+kilobytes used - how much traffic used since last update, integer value
+
+Voice usage fields:
+subscription id - ATTSubscription or SprintSubscription
+price - numeric value,  additional cost since last update
+date - data will be per day based. so will just update data if usage for current day already exists.
+seconds used - how much seconds talked since last update, integer value
+
+
+###Also we need to create purchase once users reaches some day limit
+
+You will need to create API to receive this limit
+Find subscriptions what reached limit of price on data and/or voice(not sum)
+Subtract this amount from price in usage table
+Optimize this query as much as possible, it's going to run quite often
+Send back subscription ids and type of usage what exceeded a limit
+Our agent will manually create purchases with limit price for these subs
+```
+[
+    {
+        "subscription_id": 1,
+        "usage_type": "data"
+    },
+    {
+        "subscription_id": 2,
+        "usage_type": "voice"
+    }
+    {
+        "subscription_id": 3,
+        "usage_type": "data, voice"
+    }
+]
+```
+###As agent can make a mistake, we want to validate it.
+If user ask us why he paid so much for his subscription,
+we need to validate price and kilobytes/seconds data sometimes.
+
+tip:
+
+when you subtract, you change only price column, we don't change other values for validation.
+so you will want to check current current price and used bytes alongside with created purchases
+
+to check is everything is correct by subscription id
+write an an API for it. True or False should be returned(valid/invalid)
+```
+{
+   "result": "valid"
+}
+```
+```
+{
+    "result": "invalid"
+}
+```
+Optimize this query as much as possible
+
+###also 
+we want to fetch data usage metrics  and voice usage metrics separately 
+by subscription, write an API for it
+list of dict should be returned :
+```
+[{
+'date':
+'price':
+'seconds_used' or 'kilobytes_used' 
+}]
+```
+
+++++++++

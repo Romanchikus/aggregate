@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -14,6 +16,8 @@ class SprintSubscription(models.Model):
         ('suspended', 'Suspended'),
         ('expired', 'Expired'),
     )
+    ONE_KILOBYTE_PRICE = Decimal('0.0015')
+    ONE_SECOND_PRICE = Decimal('0.0015')
 
     # Owning user
     user = models.ForeignKey(User, on_delete=models.PROTECT)

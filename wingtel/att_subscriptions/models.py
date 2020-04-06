@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django.contrib.auth.models import User
 from django.db import models
 from model_utils import Choices
@@ -6,6 +8,9 @@ from wingtel.plans.models import Plan
 
 
 class ATTSubscription(models.Model):
+    ONE_KILOBYTE_PRICE = Decimal('0.001')
+    ONE_SECOND_PRICE = Decimal('0.001')
+
     """Represents a subscription with AT&T for a user and a single device"""
     STATUS = Choices(
         ('new', 'New'),
