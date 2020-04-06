@@ -18,16 +18,24 @@ Expected data incoming rate - ~1000 updates per minute
 
 Fields what can be sent from data usage services:
 
-Data usage incoming data fields:
+**Data usage incoming data fields:**
+
 subscription id - ATTSubscription or SprintSubscription
+
 price - numeric value, additional cost since last update
+
 date - data will be per day based. so will just update data if usage for current day already exists.
+
 kilobytes used - how much traffic used since last update, integer value
 
-Voice usage fields:
+**Voice usage fields:**
+
 subscription id - ATTSubscription or SprintSubscription
+
 price - numeric value, additional cost since last update
+
 date - data will be per day based. so will just update data if usage for current day already exists.
+
 seconds used - how much seconds talked since last update, integer value
 
 
