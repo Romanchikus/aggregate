@@ -8,7 +8,7 @@
 Make a structure to collect user usage metrics, and to fetch small reports based on it.
 
 We will have two types of usage - data usage and voice usage, 
-i.e. how much user uses internet traffic and how much he talked on a phone. 
+i.e. how much user uses internet traffic and how much they talked on a phone. 
 
 Imagine that data for these metrics will be filled directly into database from a couple of
 external sources(with raw sql), you just need to create structure.
