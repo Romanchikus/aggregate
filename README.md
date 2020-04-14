@@ -44,7 +44,7 @@ Don't worry about storing data past two weeks old.
 
 We have retention policy to wipe all data older two weeks, so tables won't grow infinitely.
 
-I don't have to implement it. Just keep it in mind.
+You don't have to implement it. Just keep it in mind.
 
 
 ### Also we need to create purchase once users reaches some day limit
