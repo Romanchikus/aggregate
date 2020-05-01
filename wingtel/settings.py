@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'wingtel.plans.apps.PlansConfig',
     'wingtel.purchases.apps.PurchasesConfig',
     'wingtel.sprint_subscriptions.apps.SprintSubscriptionsConfig',
+    'wingtel.usage.apps.UsageConfig'
 ]
 
 MIDDLEWARE = [
@@ -80,7 +81,7 @@ WSGI_APPLICATION = 'wingtel.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'wing',
+        'NAME': 'wingtel',
         'USER': 'postgres',
         'PASSWORD': '',
         'HOST': '127.0.0.1',
